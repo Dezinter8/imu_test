@@ -48,11 +48,11 @@ class ImuSubscriber(QtCore.QObject):
 
         for key, value in data.items():
             self.data_lists[key].append((value, datetime.now()))
-            self.data_lists[key] = [(val, time) for val, time in self.data_lists[key] if datetime.now() - time <= timedelta(seconds=3)]
+            self.data_lists[key] = [(val, time) for val, time in self.data_lists[key] if datetime.now() - time <= timedelta(seconds=1)]
 
         self.imu_data_signal.emit(data)
 
-        if datetime.now() - self.last_updated_time > timedelta(seconds=3):
+        if datetime.now() - self.last_updated_time > timedelta(seconds=1):
             self.last_updated_time = datetime.now()
             for key, value in data.items():
                 max_value = max(self.data_lists[key], key=lambda x: x[0], default=(0, None))[0]
