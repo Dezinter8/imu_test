@@ -87,6 +87,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0">
@@ -100,6 +103,9 @@
            <widget class="QLabel" name="linear_acc_y_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -115,12 +121,18 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>Akcelerometr</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -147,6 +159,9 @@
             <property name="text">
              <string>Acc Max</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="1" column="0">
@@ -160,6 +175,9 @@
            <widget class="QLabel" name="linear_acc_x_max_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -175,6 +193,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="3" column="0">
@@ -188,6 +209,9 @@
            <widget class="QLabel" name="linear_acc_z_max_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -214,6 +238,9 @@
             <property name="text">
              <string>Acc Min</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="1" column="0">
@@ -227,6 +254,9 @@
            <widget class="QLabel" name="linear_acc_x_min_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -242,6 +272,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="3" column="0">
@@ -255,6 +288,9 @@
            <widget class="QLabel" name="linear_acc_z_min_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -315,6 +351,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0">
@@ -328,6 +367,9 @@
            <widget class="QLabel" name="angular_vel_y_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -343,12 +385,18 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label_4">
             <property name="text">
              <string>Żyroskop</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -376,6 +424,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0">
@@ -389,6 +440,9 @@
            <widget class="QLabel" name="angular_vel_y_max_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -404,12 +458,18 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label_23">
             <property name="text">
              <string>Vel Max</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -437,6 +497,9 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="2" column="0">
@@ -450,6 +513,9 @@
            <widget class="QLabel" name="angular_vel_y_min_label">
             <property name="text">
              <string>0.0</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -465,12 +531,18 @@
             <property name="text">
              <string>0.0</string>
             </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label_24">
             <property name="text">
              <string>Vel Min</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
