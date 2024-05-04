@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 import rclpy
 from sensor_msgs.msg import Imu
 from rclpy.node import Node
@@ -8,9 +8,11 @@ from datetime import datetime, timedelta
 
 from MainWindow import Ui_MainWindow
 
-class ImuSubscriber(Node):
+class ImuSubscriber(QtCore.QObject):
+    imu_data_signal = QtCore.pyqtSignal(dict)
+
     def __init__(self, main_window):
-        super().__init__('imu_subscriber')
+        super().__init__()
         self.main_window = main_window
         self.data_lists = {
             'linear_acc_x': [],
@@ -22,7 +24,9 @@ class ImuSubscriber(Node):
         }
         self.last_updated_time = datetime.now()
 
-        self.subscription = self.create_subscription(
+    def initialize_node(self):
+        self.node = Node('imu_subscriber')
+        self.subscription = self.node.create_subscription(
             Imu,
             '/imu_plugin/out',
             self.imu_callback,
@@ -46,12 +50,7 @@ class ImuSubscriber(Node):
             self.data_lists[key].append((value, datetime.now()))
             self.data_lists[key] = [(val, time) for val, time in self.data_lists[key] if datetime.now() - time <= timedelta(seconds=3)]
 
-            max_value = max(self.data_lists[key], key=lambda x: x[0], default=(0, None))[0]
-            min_value = min(self.data_lists[key], key=lambda x: x[0], default=(0, None))[0]
-
-            getattr(self.main_window, f"{key}_label").setText(str(value))
-            getattr(self.main_window, f"{key}_max_label").setText(str(max_value))
-            getattr(self.main_window, f"{key}_min_label").setText(str(min_value))
+        self.imu_data_signal.emit(data)
 
         if datetime.now() - self.last_updated_time > timedelta(seconds=3):
             self.last_updated_time = datetime.now()
@@ -62,9 +61,9 @@ class ImuSubscriber(Node):
                 getattr(self.main_window, f"{key}_max_label").setText(str(max_value))
                 getattr(self.main_window, f"{key}_min_label").setText(str(min_value))
 
-        print(f'Akcelerometr: x={linear_acceleration.x}, y={linear_acceleration.y}, z={linear_acceleration.z}')
-        print(f'Żyroskop: x={angular_velocity.x}, y={angular_velocity.y}, z={angular_velocity.z}')
-
+    def close_node(self):
+        self.node.destroy_node()
+        rclpy.shutdown()
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, obj=None, **kwargs):
@@ -74,17 +73,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Inicjalizacja węzła ROS 2
         rclpy.init()
         self.imu_subscriber = ImuSubscriber(self)
+        self.imu_subscriber.initialize_node()
 
         # Uruchamianie pętli zdarzeń ROS 2 w oddzielnym wątku
-        self.spin_thread = Thread(target=rclpy.spin, args=(self.imu_subscriber,))
+        self.spin_thread = Thread(target=rclpy.spin, args=(self.imu_subscriber.node,))
         self.spin_thread.start()
+
+        # Połączenie sygnału z wątku IMU z odpowiednimi slotami aktualizacji interfejsu użytkownika
+        self.imu_subscriber.imu_data_signal.connect(self.update_ui)
+
+    def update_ui(self, data):
+        for key, value in data.items():
+            max_value = max(self.imu_subscriber.data_lists[key], key=lambda x: x[0], default=(0, None))[0]
+            min_value = min(self.imu_subscriber.data_lists[key], key=lambda x: x[0], default=(0, None))[0]
+
+            getattr(self, f"{key}_label").setText(str(value))
+            getattr(self, f"{key}_max_label").setText(str(max_value))
+            getattr(self, f"{key}_min_label").setText(str(min_value))
 
     def closeEvent(self, event):
         # Wywołanie destroy_node i shutdown podczas zamykania aplikacji
-        self.imu_subscriber.destroy_node()
-        rclpy.shutdown()
+        self.imu_subscriber.close_node()
         event.accept()
-
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
