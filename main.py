@@ -1,6 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtCore
 import rclpy
+import math
 from sensor_msgs.msg import Imu
 from rclpy.node import Node
 from threading import Thread
@@ -23,12 +24,19 @@ class ImuSubscriber(QtCore.QObject):
             'angular_vel_z': []
         }
         self.last_updated_time = datetime.now()
-        self.angle_x = 0.0
-        self.angle_y = 0.0
-        self.angle_z = 0.0
-        self.last_angle_x = 0.0
-        self.last_angle_y = 0.0
-        self.last_angle_z = 0.0
+        self.vel_angle_x = 0.0
+        self.vel_angle_y = 0.0
+        self.vel_angle_z = 0.0
+        self.vel_last_angle_x = 0.0
+        self.vel_last_angle_y = 0.0
+        self.vel_last_angle_z = 0.0
+
+        self.acc_angle_x = 0.0
+        self.acc_angle_y = 0.0
+        self.acc_angle_z = 0.0
+        self.acc_last_angle_x = 0.0
+        self.acc_last_angle_y = 0.0
+        self.acc_last_angle_z = 0.0
 
     def initialize_node(self):
         self.node = Node('imu_subscriber')
@@ -70,16 +78,26 @@ class ImuSubscriber(QtCore.QObject):
 
         # Obliczanie kąta pochylenia
         dt = (datetime.now() - self.last_updated_time).total_seconds()
-        self.angle_x += (self.last_angle_x + data['angular_vel_x'] * dt) * dt / 2
-        self.last_angle_x = data['angular_vel_x']
-        self.angle_y += (self.last_angle_y + data['angular_vel_y'] * dt) * dt / 2
-        self.last_angle_y = data['angular_vel_y']
-        self.angle_z += (self.last_angle_z + data['angular_vel_z'] * dt) * dt / 2
-        self.last_angle_z = data['angular_vel_z']
+        self.vel_angle_x += (self.vel_last_angle_x + data['angular_vel_x'] * dt) * dt / 2
+        self.vel_last_angle_x = data['angular_vel_x']
+        self.vel_angle_y += (self.vel_last_angle_y + data['angular_vel_y'] * dt) * dt / 2
+        self.vel_last_angle_y = data['angular_vel_y']
+        self.vel_angle_z += (self.vel_last_angle_z + data['angular_vel_z'] * dt) * dt / 2
+        self.vel_last_angle_z = data['angular_vel_z']
 
-        self.main_window.X_angle_label.setText(f"{self.angle_x:.2f}°")
-        self.main_window.Y_angle_label.setText(f"{self.angle_y:.2f}°")
-        self.main_window.Z_angle_label.setText(f"{self.angle_z:.2f}°")
+
+        self.acc_angle_x = math.degrees(math.atan2(linear_acceleration.y, linear_acceleration.z))
+        self.acc_angle_y = math.degrees(math.atan2(-linear_acceleration.x, linear_acceleration.z))
+        self.acc_angle_z = math.degrees(math.atan2(linear_acceleration.x, linear_acceleration.y))
+
+
+        self.main_window.vel_x_angle_label.setText(f"{self.vel_angle_x:.2f}°")
+        self.main_window.vel_y_angle_label.setText(f"{self.vel_angle_y:.2f}°")
+        self.main_window.vel_z_angle_label.setText(f"{self.vel_angle_z:.2f}°")
+
+        self.main_window.acc_x_angle_label.setText(f"{self.acc_angle_x:.2f}°")
+        self.main_window.acc_y_angle_label.setText(f"{self.acc_angle_y:.2f}°")
+        self.main_window.acc_z_angle_label.setText(f"{self.acc_angle_z:.2f}°")
 
 
     def close_node(self):

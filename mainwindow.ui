@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>417</height>
+    <width>918</width>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,9 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -557,7 +560,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1">
+      <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,1">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -575,6 +578,12 @@
        </property>
        <item>
         <widget class="QFrame" name="frame_4">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -607,7 +616,7 @@
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="label_15">
             <property name="text">
-             <string>Pozycja</string>
+             <string>Pozycja według żyroskopu</string>
             </property>
            </widget>
           </item>
@@ -619,7 +628,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLabel" name="X_angle_label">
+           <widget class="QLabel" name="vel_x_angle_label">
             <property name="text">
              <string>00</string>
             </property>
@@ -629,7 +638,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLabel" name="Z_angle_label">
+           <widget class="QLabel" name="vel_z_angle_label">
             <property name="text">
              <string>00</string>
             </property>
@@ -639,7 +648,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLabel" name="Y_angle_label">
+           <widget class="QLabel" name="vel_y_angle_label">
             <property name="text">
              <string>00</string>
             </property>
@@ -659,6 +668,97 @@
         </widget>
        </item>
        <item>
+        <widget class="QFrame" name="frame_7">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8" columnstretch="0,1,0">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>X:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Pozycja według akcelerometru</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>Z:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="acc_x_angle_label">
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="acc_z_angle_label">
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="acc_y_angle_label">
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Y:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QFrame" name="frame_5">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -668,7 +768,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1,1">
           <property name="spacing">
-           <number>6</number>
+           <number>0</number>
           </property>
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
@@ -677,6 +777,9 @@
            <number>0</number>
           </property>
           <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
            <number>0</number>
           </property>
           <property name="bottomMargin">
