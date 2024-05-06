@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Images">
+    <file>src/x_transfor.png</file>
+    <file>src/y_transfor.png</file>
+    <file>src/z_transfor.png</file>
+  </qresource>
+</RCC>

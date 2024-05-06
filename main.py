@@ -23,6 +23,12 @@ class ImuSubscriber(QtCore.QObject):
             'angular_vel_z': []
         }
         self.last_updated_time = datetime.now()
+        self.angle_x = 0.0
+        self.angle_y = 0.0
+        self.angle_z = 0.0
+        self.last_angle_x = 0.0
+        self.last_angle_y = 0.0
+        self.last_angle_z = 0.0
 
     def initialize_node(self):
         self.node = Node('imu_subscriber')
@@ -60,6 +66,21 @@ class ImuSubscriber(QtCore.QObject):
 
                 getattr(self.main_window, f"{key}_max_label").setText(str(max_value))
                 getattr(self.main_window, f"{key}_min_label").setText(str(min_value))
+
+
+        # Obliczanie kąta pochylenia
+        dt = (datetime.now() - self.last_updated_time).total_seconds()
+        self.angle_x += (self.last_angle_x + data['angular_vel_x'] * dt) * dt / 2
+        self.last_angle_x = data['angular_vel_x']
+        self.angle_y += (self.last_angle_y + data['angular_vel_y'] * dt) * dt / 2
+        self.last_angle_y = data['angular_vel_y']
+        self.angle_z += (self.last_angle_z + data['angular_vel_z'] * dt) * dt / 2
+        self.last_angle_z = data['angular_vel_z']
+
+        self.main_window.X_angle_label.setText(f"{self.angle_x:.2f}°")
+        self.main_window.Y_angle_label.setText(f"{self.angle_y:.2f}°")
+        self.main_window.Z_angle_label.setText(f"{self.angle_z:.2f}°")
+
 
     def close_node(self):
         self.node.destroy_node()
