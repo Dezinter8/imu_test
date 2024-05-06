@@ -34,9 +34,6 @@ class ImuSubscriber(QtCore.QObject):
         self.acc_angle_x = 0.0
         self.acc_angle_y = 0.0
         self.acc_angle_z = 0.0
-        self.acc_last_angle_x = 0.0
-        self.acc_last_angle_y = 0.0
-        self.acc_last_angle_z = 0.0
 
     def initialize_node(self):
         self.node = Node('imu_subscriber')
