@@ -681,7 +681,7 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8" columnstretch="0,1,0">
+         <layout class="QGridLayout" name="gridLayout_8" columnstretch="0,1,0,1">
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -704,27 +704,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="3">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Pozycja według akcelerometru</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_34">
             <property name="text">
              <string>Z:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="acc_x_angle_label">
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>
@@ -738,7 +721,28 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>Y:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Avg Z:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLabel" name="acc_z_avg_angle_label">
+            <property name="text">
+             <string>00</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="3">
            <widget class="QLabel" name="acc_y_angle_label">
             <property name="text">
              <string>00</string>
@@ -748,10 +752,20 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_35">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLabel" name="label_30">
             <property name="text">
-             <string>Y:</string>
+             <string>Pozycja według akcelerometru</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="3">
+           <widget class="QLabel" name="acc_x_angle_label">
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>

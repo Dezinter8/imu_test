@@ -21,7 +21,8 @@ class ImuSubscriber(QtCore.QObject):
             'linear_acc_z': [],
             'angular_vel_x': [],
             'angular_vel_y': [],
-            'angular_vel_z': []
+            'angular_vel_z': [],
+            'acc_angle_z': []
         }
         self.last_updated_time = datetime.now()
         self.vel_angle_x = 0.0
@@ -61,6 +62,10 @@ class ImuSubscriber(QtCore.QObject):
             self.data_lists[key].append((value, datetime.now()))
             self.data_lists[key] = [(val, time) for val, time in self.data_lists[key] if datetime.now() - time <= timedelta(seconds=1)]
 
+        # Dodawanie wartości acc_angle_z do listy
+        self.data_lists['acc_angle_z'].append((self.acc_angle_z, datetime.now()))
+        self.data_lists['acc_angle_z'] = [(val, time) for val, time in self.data_lists['acc_angle_z'] if datetime.now() - time <= timedelta(seconds=3)]
+
         self.imu_data_signal.emit(data)
 
         if datetime.now() - self.last_updated_time > timedelta(seconds=1):
@@ -71,6 +76,10 @@ class ImuSubscriber(QtCore.QObject):
 
                 getattr(self.main_window, f"{key}_max_label").setText(str(max_value))
                 getattr(self.main_window, f"{key}_min_label").setText(str(min_value))
+
+            # Obliczanie średniej arytmetycznej wartości acc_angle_z
+            avg_acc_angle_z = sum(val[0] for val in self.data_lists['acc_angle_z']) / len(self.data_lists['acc_angle_z'])
+            self.main_window.acc_z_avg_angle_label.setText(f"{avg_acc_angle_z:.2f}°")
 
 
         # Obliczanie kąta pochylenia
